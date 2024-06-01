@@ -2,6 +2,8 @@
 	import { userProfile } from '/src/routes/scripts/auth.js';
 	import { onMount } from 'svelte';
     import { handleScroll } from '/src/routes/scripts/scrollHandler.js';
+    import { page } from '$app/stores';
+
 
     let profile;
 
@@ -14,6 +16,7 @@
         return cleanup;
     });
 </script>
+
 <header>
     <div id="topnav">
         <a href="/"><i class="fas fa-home"></i> Home</a>
@@ -21,7 +24,6 @@
         <a href="/line-up"><i class="fas fa-music"></i> Line Up</a>
         <a href="/tickets"><i class="fas fa-ticket-alt"></i> Tickets</a>
         <div id="topnav-right">
-            <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
             {#if !profile}
             <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
             {:else}
@@ -36,5 +38,5 @@
 </div>
 
 <footer>
-    <p>Footer</p>
+    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
 </footer>

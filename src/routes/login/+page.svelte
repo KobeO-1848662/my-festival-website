@@ -3,8 +3,8 @@
     import { login } from '/src/routes/scripts/auth.js';
     import { goto } from '$app/navigation';
     
-    let email = '';
-    let password = '';
+    let email = 'test.test@gmail.com';
+    let password = 'test123';
     let error = '';   
   
     const handleLogin = async () => {

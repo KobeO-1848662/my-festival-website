@@ -23,4 +23,9 @@
 
 <h1>welcome</h1>
 <p>Welcome, {profile.name}</p>
+
+<p>Go to your tickets: <a href="/tickets">tickets</a></p>
+<p>Go to line up: <a href="/line-up">tickets</a></p>
+
+
 <button on:click={handleLogout}>Logout</button>

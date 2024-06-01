@@ -49,6 +49,11 @@ header {
     float: right;
 }
 
+#topnav .is-active{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}   
+
 footer {
     position: fixed;
     left: 0;
@@ -57,12 +62,22 @@ footer {
     background-color: rgba(240, 214, 193, 0);
     text-align: center;
     z-index: 1000;
+    padding: 5px;
 }
 
-footer p {
-    margin: 0;
+footer a {
     color: #8c384e;
-}
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+footer a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+  }
+
 
 #content {
     margin: 0px;
@@ -130,7 +145,6 @@ h1 {
     opacity: 1;
 }
 
-
 .containerGrid .item .dayAndStage {
     position: absolute;
     top: 17%;
@@ -141,11 +155,16 @@ h1 {
     font-size: 1.2vw;
 }
 
+.containerGrid .item .favorite {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 2vw;
+}
+
 .containerGrid .item:hover{
     transform: scale(1.05);
 }
-
-
 
 .containerGrid .item .name {
     width: 100%;
@@ -195,6 +214,17 @@ h1 {
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transition: text-decoration 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.photo button{
+    position: absolute;
+    top: 75px;
+    right: 50px;
+    background-color: rgba(62, 220, 255, 0.8);
+    padding: 0.1vw 0.2vw;
+    border-radius: 1vw;
+    font-size: 2vw;
+    cursor: pointer;
 }
 
 iframe.map {
@@ -280,7 +310,13 @@ h1 {
     font-weight: bold;
 }
 
+.favorite-toggle {
+    margin-top: 10px;
+}
+
 .play-button {
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border: 20px black;
@@ -288,8 +324,80 @@ h1 {
     background: white;
     cursor: pointer;
     outline: none;
+
+}
+
+.play-button i {
+    font-size: 50px;
+    color: #8c384e;
+    margin-left: -6px;
 }
 
 form {
     margin-top: 10px;
+}
+
+.tickets-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.tickets-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tickets-container .ticket-card {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    width: 250px; 
+    height: 350px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: rotate(-2deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #8c384e;
+}
+
+.tickets-container .ticket-card:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tickets-container .ticket-card .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aefdcc;
+    font-style: italic;
+}
+
+.tickets-container .ticket-card .artistTicket {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.tickets-container .ticket-card .description {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.tickets-container .ticket-card .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
