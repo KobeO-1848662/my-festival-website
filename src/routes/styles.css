@@ -130,6 +130,7 @@ h1 {
     opacity: 1;
 }
 
+
 .containerGrid .item .dayAndStage {
     position: absolute;
     top: 17%;
@@ -288,23 +289,7 @@ h1 {
     cursor: pointer;
     outline: none;
 }
-.play-icon {
-    width: 0;
-    height: 0;
-    border-left: 15px solid black;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    margin-left: 35%;
-}
-.pause-icon {
-    display: flex;
-    justify-content: space-between;
-    width: 15px;
-    height: 20px;
-    margin-left: 30%;
-}
-.pause-icon div {
-    width: 4px;
-    height: 100%;
-    background-color: black;
+
+form {
+    margin-top: 10px;
 }

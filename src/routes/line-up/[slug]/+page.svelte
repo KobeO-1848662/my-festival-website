@@ -22,12 +22,9 @@
         <audio bind:this={audio} src={data.artist.audio}></audio>
         <button class="play-button" on:click={toggleSong}>
             {#if isPlaying}
-                <div class="pause-icon">
-                    <div></div>
-                    <div></div>
-                </div>
+                <i class="fas fa-pause"></i>
             {:else}
-                <div class="play-icon"></div>
+                <i class="fas fa-play"></i>
             {/if}
         </button>
     </div>
