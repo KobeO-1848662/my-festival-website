@@ -31,11 +31,3 @@
     </a>
     {/each}
 </div>
-
-{#if profile}
-<p><a href="/welcome">check your allready purchased tickets here</a></p>
-{/if}
-
-<p>todo: - verschillende tickets 
-         - reeds gekochte tickets tonen (als ingelogd)
-</p>

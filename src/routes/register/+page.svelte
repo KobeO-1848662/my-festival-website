@@ -1,8 +1,8 @@
 <script>
     import { register } from '/src/routes/scripts/auth.js';
-    let name = 'test';
-    let email = 'test.test@gmail.com';
-    let password = 'test123';
+    let name = '';
+    let email = '';
+    let password = '';
     let error = '';   
   
     const handleRegister = async () => {
@@ -21,8 +21,11 @@
     <input type="text" bind:value={name} placeholder="Name" required />
     <input type="email" bind:value={email} placeholder="Email" required />
     <input type="password" bind:value={password} placeholder="Password" required />
-    <button type="submit">Login</button>
+    <button type="submit">sign up</button>
 </form>
 {#if error}
     <p>{error}</p>
 {/if}
+
+<!-- svelte-ignore a11y-invalid-attribute -->
+<p><a href="javascript:history.back()">Back to login</a></p>

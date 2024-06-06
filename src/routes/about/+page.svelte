@@ -19,10 +19,10 @@
     <div class="item">
         <h2>Festival layout</h2>
         <h3>The three stages are in the following classrooms:</h3>
-        <div class="containerGrid2">
-            <div class="item">Main Stage: H-B211</div>
-            <div class="item">Boiler Room: H-E206</div>
-            <div class="item">Dance Hall: H-E205</div>
+        <div class="containerGrid">
+            <div class="item">Main Stage: <br> H-B211</div>
+            <div class="item">Boiler Room: <br> H-E206</div>
+            <div class="item">Dance Hall: <br> H-E205</div>
         </div>
     </div>
 </div>

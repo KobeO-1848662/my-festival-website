@@ -1,17 +1,17 @@
 import {db} from '/src/lib/supabaseClient.js';
 
-export async function checkFavoriteStatus(profileId, artistName) {
+export async function checkPurchased(profileId, ticketTitle){
     if (profileId) {
         const {data: profile, error} = await db
         .from('profiles')
-        .select('favorites')
+        .select('tickets')
         .eq('user_id', profileId)
         .single()
-        
+
         if (error) {
             return false;
-        } else if (profile && profile.favorites) {
-            return profile.favorites.includes(artistName);
+        } else if (profile && profile.tickets) {
+            return profile.tickets.includes(ticketTitle);
         } else {
             return false;
         }
@@ -19,7 +19,7 @@ export async function checkFavoriteStatus(profileId, artistName) {
     return false;
 }
 
-export async function toggleFavorite(profile, artistName) {
+export async function purchaseTicket(profile, ticketTitle){
     if (!profile || !profile.user_id) {
         return false;
     }
@@ -27,7 +27,7 @@ export async function toggleFavorite(profile, artistName) {
     try {
         const { data: profileData, error: fetchError } = await db
             .from('profiles')
-            .select('favorites')
+            .select('tickets')
             .eq('user_id', profile.user_id)
             .single();
 
@@ -35,23 +35,23 @@ export async function toggleFavorite(profile, artistName) {
             return false;
         }
 
-        let updatedFavorites = [];
+        let updatedTickets = [];
 
-        if (profileData && profileData.favorites) {
-            updatedFavorites = [...profileData.favorites];
+        if (profileData && profileData.tickets) {
+            updatedTickets = [...profileData.tickets];
         }
 
-        const isFavorite = updatedFavorites.includes(artistName);
+        const isPurchased = updatedTickets.includes(ticketTitle);
 
-        if (isFavorite) {
-            updatedFavorites = updatedFavorites.filter(fav => fav !== artistName);
+        if (isPurchased) {
+            updatedTickets = updatedTickets.filter(tic => tic !== ticketTitle);
         } else {
-            updatedFavorites.push(artistName);
+            updatedTickets.push(ticketTitle);
         }
 
         const { error: updateError } = await db
             .from('profiles')
-            .update({ favorites: updatedFavorites })
+            .update({ tickets: updatedTickets })
             .eq('user_id', profile.user_id);
 
         if (updateError) {
@@ -63,4 +63,3 @@ export async function toggleFavorite(profile, artistName) {
         return false;
     }
 }
-

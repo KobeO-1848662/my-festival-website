@@ -1,8 +1,23 @@
 html, body {
-    background-image: linear-gradient(to right, #FEB47B, #FF7E5F);
+    background: linear-gradient(to right, #FEB47B, #FF7E5F, #FF6B6B, #D76BFF);
+    background-size: 400% 400%;
     margin: 0;
     padding: 0;
+    animation: gradient 30s ease infinite;
+    top: 100vh;
 }
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 h4 {
     font-size: 20px;
     color: white;
@@ -14,54 +29,56 @@ h3 {
 }
 
 p {
+    text-align: center;
     color: white;
+    padding-bottom: 20px;
 }
+
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: rgba(255, 240, 225, 0);
-    z-index: 1000;
+    z-index: 10;
     transition: background-color 0.3s ease;
 }
 
-#topnav {
+.topnav {
     overflow: hidden;
   }
   
-#topnav a {
+.topnav a {
     float: left;
     color: #8c384e;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    display: block;
   }
   
-#topnav a:hover {
+.topnav a:hover {
     background-color:  rgba(0, 0, 0, 0.3);
     color: white;
   }
 
-
-#topnav-right {
+.topnav-right {
     float: right;
 }
 
-#topnav .is-active{
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-}   
+.topnav .icon {
+    display: none;
+}
 
 footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgba(240, 214, 193, 0);
+    background-color: rgba(255, 240, 225, 0);
     text-align: center;
-    z-index: 1000;
+    z-index: 10;
     padding: 5px;
 }
 
@@ -93,6 +110,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .containerFlex .item {
@@ -103,7 +121,7 @@ h1 {
 
 .containerFlex h2 {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     color: #8c384e;
     background-image: linear-gradient(to right, #b8f1f9, #aefdcc);
     padding: 10px;
@@ -118,24 +136,35 @@ h1 {
     color: inherit;
 }
 
-.containerGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    position: relative;
+.containerFlex a:hover h2::after {
+    content: '\f0c1';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900; 
+    margin-left: 5px;
+    font-size: 0.8em;
+    position: absolute; 
+    transform: translateY(20%);  
 }
 
-.containerGrid a {
+.containerArtists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.containerArtists a {
     text-decoration: none;
     color: inherit;
 }
 
-.containerGrid .item{
-    background-color: rgba(255, 255, 255, 0.5);
+.containerArtists .item{
+    background-color: rgba(255, 255, 255, 0.4);
     padding: 2vw;
     color: #8c384e;
-    font-size: 2vw;
+    font-size: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,36 +172,48 @@ h1 {
     position: relative;
     cursor: pointer;
     opacity: 1;
+    width: 300px;
+    height: 400px;
+    
 }
 
-.containerGrid .item .dayAndStage {
-    position: absolute;
-    top: 17%;
-    right: 10%;
+.containerArtists .item .dayAndStage {
+    position: relative;
+    top: 65px;
+    right: -100px;
     background-color: rgba(62, 220, 255, 0.8);
     padding: 0.1vw 0.2vw;
     border-radius: 1vw;
-    font-size: 1.2vw;
+    font-size: 14px;
 }
 
-.containerGrid .item .favorite {
+.containerArtists .item .favorite {
     position: absolute;
     top: 5%;
     right: 5%;
     font-size: 2vw;
 }
 
-.containerGrid .item:hover{
+.containerArtists .item .favorite:hover .fas {
+    color: gold;
+}
+
+.containerArtists .item .favorite:hover .far {
+    color: gold;
+}
+
+
+.containerArtists .item:hover{
     transform: scale(1.05);
 }
 
-.containerGrid .item .name {
+.containerArtists .item .name {
     width: 100%;
     text-align: center; 
     margin-bottom: 5%; 
  }
 
-.containerGrid .item .imageContainer {
+.containerArtists .item .imageContainer {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -180,24 +221,27 @@ h1 {
     margin-bottom: 5%;
 }
 
-.containerGrid .item .imageContainer img {
+.containerArtists .item .imageContainer img {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
 }
 
-.containerGrid .item .genre {
+.containerArtists .item .genre {
     width: 100%;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 0;
 }
 
 
 .photo {
     height: 100vh;
     background-size: cover;
-    background-position: top left;
-    position: relative;
+    background-position: top center;
+    position: relative; 
+    top: 0;
+    left: 0;
+    width: 100%;  
 }
 
 .photo h1 {
@@ -220,32 +264,21 @@ h1 {
     position: absolute;
     top: 75px;
     right: 50px;
-    background-color: rgba(62, 220, 255, 0.8);
-    padding: 0.1vw 0.2vw;
+    background-color: rgba(255, 215, 0, 0.5);
     border-radius: 1vw;
-    font-size: 2vw;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 
 iframe.map {
-    width: 450px;
+    width: 700px;
     height: 450px;
     border: none;
     border-radius: 10px;
 }
 
 
-@media (max-width: 768px) {
-    iframe {
-        height: 300px;
-    }
-
-    .item {
-        max-width: 100%;
-    }
-}
-
-.containerGrid2 {
+.containerGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -253,11 +286,11 @@ iframe.map {
 }
 
 
-.containerGrid2 .item{
+.containerGrid .item{
     background-color: rgba(255, 255, 255, 0.5);
     padding: 2vw;
     color: #8c384e;
-    font-size: 2vw;
+    font-size: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -312,6 +345,7 @@ h1 {
 
 .favorite-toggle {
     margin-top: 10px;
+    color: gold;
 }
 
 .play-button {
@@ -321,7 +355,7 @@ h1 {
     height: 50px;
     border: 20px black;
     border-radius: 50%;
-    background: white;
+    background: transparent;
     cursor: pointer;
     outline: none;
 
@@ -334,7 +368,44 @@ h1 {
 }
 
 form {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;    
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+form button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
 }
 
 .tickets-container {
@@ -384,6 +455,7 @@ form {
 .tickets-container .ticket-card .artistTicket {
     font-size: 1em;
     font-style: italic;
+    margin: auto;
 }
 
 .tickets-container .ticket-card .description {
@@ -396,8 +468,230 @@ form {
     padding: 10px 20px;
     font-size: 1em;
     color: white;
-    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.socialMediaContainer {
+    font-size: 5em;    
+    padding-top: 10px;
+    text-align: center;
+}
+
+.socialMediaContainer #facebook {
+    color: #3b5998 ;
+}
+
+.socialMediaContainer #instagram {
+    color: transparent;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.socialMediaContainer #twitter {
+    color: white ;
+}
+
+.containerSchedule {
+    display: flex;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dayColumn {
+    flex: 50%;
+    padding: 10px;
+}
+
+.scheduleHour {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    margin-bottom: 10px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.hourLabel {
+    display: flex;
+    font-weight: bold;
+}
+
+.artistsInHour {
+    display: flex;
+    flex-direction: column;
+}
+.artistSlot {
+    color: #ffcc00;
+    font-weight: bold;
+    font-family: cursive;
+    margin-left: 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav-right {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .topnav.responsive {
+        position: relative;
+        background-color: rgb(255, 240, 225) ;
+    }
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .topnav.responsive .topnav-right{
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .containerArtists {
+        width: 95%;
+    }
+    .containerArtists .item {
+        width: 80%;
+        height: 80%;
+    }
+    .containerArtists .item .favorite{
+        position: absolute;
+        left: 250px;
+        top: 10px;
+        font-size: 5vw;
+    }
+    .containerArtists .item .dayAndStage{
+        top: 0;
+        right: -70px;
+    }
+    .tickets-container {
+        width: 90%;
+    }
+    .tickets-container .item{
+        width: 150px;
+        padding-left: 1vw;
+    }
+    iframe.map {
+        width: 300px;
+        height: 300px;
+    }
+    .containerGrid .item{
+        width: 70%;
+        font-size: 4vw;
+    }
+    form {
+        width: 70%;
+        padding: 15px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .play-button i {
+        margin-left: -8px;
+        margin-top: -7px;
+    }
+    .photo[id='1']{
+        background-size: cover;
+        background-position: 10% top;
+    }
+    .photo[id='2']{
+        background-size: cover;
+        background-position: 47% top;
+    }
+    .photo[id='3']{
+        background-size: cover;
+        background-position: 90% top;
+    }
+    .photo[id='4']{
+        background-size: cover;
+        background-position: 80% top;
+    }
+    .photo[id='5']{
+        background-size: cover;
+        background-position: 52% top;
+    }
+    .photo[id='6']{
+        background-size: cover;
+        background-position: 45% top;
+    }
+    .photo[id='7']{
+        background-size: cover;
+        background-position: 50% top;
+    }
+    .photo[id='8']{
+        background-size: cover;
+        background-position: 53% top;
+    }
+    .photo[id='9']{
+        background-size: cover;
+        background-position: 30% top;
+    }
+    .photo button{
+        top: 800px;
+        right: 20px;
+        font-size: 4vw;
+        cursor: pointer;
+    }
+    .containerSchedule{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+
+.photo[id='1']{
+    background-size: cover;
+    background-position: 10% top;
+}
+.photo[id='2']{
+    background-size: cover;
+    background-position: 47% top;
+}
+.photo[id='3']{
+    background-size: cover;
+    background-position: 90% top;
+}
+.photo[id='4']{
+    background-size: cover;
+    background-position: 80% top;
+}
+.photo[id='5']{
+    background-size: cover;
+    background-position: 52% top;
+}
+.photo[id='6']{
+    background-size: cover;
+    background-position: 45% top;
+}
+.photo[id='7']{
+    background-size: cover;
+    background-position: 50% top;
+}
+.photo[id='8']{
+    background-size: cover;
+    background-position: 53% top;
+}
+.photo[id='9']{
+    background-size: cover;
+    background-position: 30% top;
+}
 }

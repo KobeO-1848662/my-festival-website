@@ -1,6 +1,6 @@
 <script>
     import { userProfile } from '/src/routes/scripts/auth.js';
-    import { checkFavoriteStatus } from '/src/routes/scripts/favoriteManager.js';
+    import { checkFavoriteStatus, toggleFavorite } from '/src/routes/scripts/favoriteManager.js';
 
     export let data;
 
@@ -25,6 +25,17 @@
             }
         }
     });
+
+    async function handleToggleFavorite(event, artist) {
+        event.stopPropagation();
+        event.preventDefault();
+        if (profile) {
+            const success = await toggleFavorite(profile, artist.name)
+            if (success) {
+                favoriteStatuses[artist.name] = !favoriteStatuses[artist.name];
+            }
+        }
+    };
 </script>
 
 
@@ -49,7 +60,7 @@
 {/if}
 <div class="containerFlex">
     <h2>Main Stage</h2>
-    <div class="containerGrid">
+    <div class="containerArtists">
         {#each data.artists as artist}
             {#if 
                 (!showOnlyFavorites || (profile && favoriteStatuses[artist.name])) &&
@@ -60,7 +71,9 @@
             <a href="/line-up/{artist.name}">
                 <div class="item">
                     {#if profile}
-                        <div class="favorite">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        <div class="favorite" on:click={(event) => handleToggleFavorite(event, artist)}>
                             {#if favoriteStatuses[artist.name]}
                                 <i class="fas fa-star"></i>
                             {:else}
@@ -79,7 +92,7 @@
         {/each}
     </div>
     <h2>Boiler Room</h2>
-    <div class="containerGrid">
+    <div class="containerArtists">
         {#each data.artists as artist}
             {#if 
                 (!showOnlyFavorites || (profile && favoriteStatuses[artist.name])) &&
@@ -90,7 +103,9 @@
             <a href="/line-up/{artist.name}">
                 <div class="item">
                     {#if profile}
-                        <div class="favorite">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        <div class="favorite" on:click={(event) => handleToggleFavorite(event, artist)}>
                             {#if favoriteStatuses[artist.name]}
                                 <i class="fas fa-star"></i>
                             {:else}
@@ -109,7 +124,7 @@
         {/each}
     </div>
     <h2>Dance Hall</h2>
-    <div class="containerGrid">
+    <div class="containerArtists">
         {#each data.artists as artist}
             {#if 
                 (!showOnlyFavorites || (profile && favoriteStatuses[artist.name])) &&
@@ -120,7 +135,9 @@
             <a href="/line-up/{artist.name}">
                 <div class="item">
                     {#if profile}
-                        <div class="favorite">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        <div class="favorite" on:click={(event) => handleToggleFavorite(event, artist)}>
                             {#if favoriteStatuses[artist.name]}
                                 <i class="fas fa-star"></i>
                             {:else}
@@ -137,5 +154,38 @@
             </a>
             {/if}
         {/each}
+    </div>
+    <h2>Full schedule</h2>
+    <div class="containerSchedule">
+        <div class="dayColumn">
+            <h3>Saturday</h3>
+            {#each Array.from({ length: 13 }, (_, i) => i + 12) as hour}
+                <div class="scheduleHour">
+                    <div class="hourLabel">{hour}:00</div>
+                    <div class="artistsInHour">
+                        {#each data.artists as artist}
+                            {#if artist.day === 'Sat' && artist.time === hour + ':00:00'}
+                                <div class="artistSlot">{artist.name}</div>
+                            {/if}
+                        {/each}
+                    </div>
+                </div>
+            {/each}
+        </div>
+        <div class="dayColumn">
+            <h3>Sunday</h3>
+            {#each Array.from({ length: 13 }, (_, i) => i +12) as hour}
+                <div class="scheduleHour">
+                    <div class="hourLabel">{hour}:00</div>
+                    <div class="artistsInHour">
+                        {#each data.artists as artist}
+                            {#if artist.day === 'Sun' && artist.time === hour + ':00:00'}
+                                <div class="artistSlot">{artist.name}</div>
+                            {/if}
+                        {/each}
+                    </div>
+                </div>
+            {/each}
+        </div>
     </div>
 </div>

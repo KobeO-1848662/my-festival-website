@@ -1,17 +1,16 @@
 <script>
-	import { userProfile } from '/src/routes/scripts/auth.js';
     import { login } from '/src/routes/scripts/auth.js';
     import { goto } from '$app/navigation';
     
-    let email = 'test.test@gmail.com';
-    let password = 'test123';
+    let email = '';
+    let password = '';
     let error = '';   
   
     const handleLogin = async () => {
         try {
             await login(email, password);
             error = '';
-            goto('/welcome');
+            goto('/profile');
         } catch (err) {
             error = err.message;
         }
@@ -29,4 +28,4 @@
     <p>{error}</p>
 {/if}
 
-<p>no account yet? <a href='/register'>sign up here</a></p>
+<p>No account yet? <a href='/register'>sign up here</a></p>
